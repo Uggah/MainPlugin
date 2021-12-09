@@ -1,0 +1,61 @@
+spawnlocation:
+  x: 0
+  y: 0
+  z: 0
+messages:
+  messageReceived: "§e%sender% §7-> §e%receiver%§f:>"
+  messageReceivedServeradmin: "§7Der §eServeradmin §7hat dir eine Nachricht gesendet§f:> "
+  messageReceiverNotOnline: "§cDieser Spieler ist derzeit nicht online!"
+  messageSent: "§e%sender% §7-> §e%receiver%§f:>"
+  messageSamePlayer: "§7Wie einsam muss man sein, um zu versuchen, sich selbst eine Nachricht zu senden?"
+  messageTooFewArguments: "§cSyntax: /msg <Empfänger> <Nachricht>"
+ping:
+  message: "§7Dein Ping beträgt derzeit %ping% ms."
+setspawn:
+  message: "§7Der Spawn wurde erfolgreich neu gesetzt!"
+  messageSyntax: "§cSyntax: /setspawn [<x> <y> <z>]"
+spawn:
+  message: "§7Du wurdest erfolgreich an den Spawn teleportiert!"
+tpa:
+  requestSent: "§7Die Anfrage an §e%player% §7wurde gesendet!"
+  prompt: "§e%player% §7möchte sich zu dir teleportieren! Du kannst die Anfrage mit /tpaccept §7annehmen."
+  teleportationSuccessful: "§e%player% §7wurde erfolgreich zu dir teleportiert"
+  messageSyntax: "§cSyntax: /tpa <Empfänger>"
+tpaccept:
+  teleportationSuccessful: "§7Du wurdest erfolgreich zu §e%player% §7teleportiert"
+  requestNotFound: "§cDie Anfrage von §e%player% §cwurde nicht gefunden!"
+  messageSyntax: "§cSyntax: /tpaccept <Absender>"
+tpdeny:
+  messageSyntax: "§cSyntax: /tpdeny <Absender>"
+home:
+  noHomeFound: "§cDu hast keinen Homepunkt gesetzt!"
+  teleportationSuccessful: "§7Du wurdest erfolgreich nach Hause teleportiert!"
+  messageSyntax: "§cSyntax: /home"
+sethome:
+  message: "§7Dein Homepunkt wurde erfolgreich gesetzt!"
+  messageSyntax: "§cSyntax: /sethome"
+  messageSyntaxOp: "§cSyntax /sethome [[world] x y z]"
+joinEvent:
+  message: "§7[§a+§7] §e%player%"
+quitEvent:
+  message: "§7[§4-§7] §e%player%"
+chat:
+  prefix: "§e%player%§7:> "
+settings:
+  messageSyntax: "§c/settings [flag true/false]"
+  messageSuccessful: "§7Die Einstellung wurde erfolgreich übernommen!"
+  guiTitle: "Benutzereinstellungen"
+  noteOnChatTitleActive: "§bBenachrichtigungston §cdeaktivieren"
+  noteOnChatTitleActiveLore: "§7Deaktiviert den Benachrichtigungston, den du hörst, &break;§7wenn dein Name im Chat erwähnt wird."
+  noteOnChatTitleInactive: "§bBenachrichtigungston §aaktivieren"
+  noteOnChatTitleInactiveLore: "§7Aktiviert den Benachrichtigungston, den du hörst, &break;§7wenn dein Name im Chat erwähnt wird."
+nickname:
+  message: "§7Der Nickname von §e%player% §7wurde erfolgreich zu §e%nickname% §7geändert!"
+  messageSyntax: "/nickname <Spielername> <Nickname>"
+resetnickname:
+  message: "§7Der Nickname von §e%player% §7wurde erfolgreich zurückgesetzt!"
+  messageSyntax: "§cSyntax: /resetnickname <Spielername>"
+colonCommand:
+  message: "§cDas darfst du nicht!"
+plugin:
+  message: "§cDas darfst du nicht!"

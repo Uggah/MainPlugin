@@ -1,0 +1,53 @@
+name: MainPlugin
+version: 0.1
+main: de.lifeminer.mc.MainPlugin.MainPlugin
+api-version: 1.18
+author: Uggah
+website: www.lifeminer.de
+commands:
+  info:
+    description: Das MI/MM-Projekt-Infomenü!
+    usage: "/<command>"
+  msg:
+    description: Abgeänderte Version des Vanilla /msg Commands. Dient lediglich dem Zweck der optischen Aufbesserung.
+    usage: "/<command> [playername] [message]"
+  spawn:
+    description: Teleportiert den Spieler an den gesetzten Spawn.
+    usage: "/<command>"
+  setspawn:
+    description: Setzt den Spawn. Kann nur von Operatoren verwendet werden.
+    usage: "/<command> [world] [x] [y] [z]"
+  ping:
+    description: Zeigt den aktuellen Ping an.
+    usage: "/<command>"
+  settings:
+    description: Settings-Panel
+    usage: "/<command> [flag] [true/false]"
+  tpa:
+    description: Frage an, dich zu jemandem zu teleportieren.
+    usage: "/<command> [playername]"
+  tpaccept:
+    description: Akzeptiere eine Teleport-Anfrage.
+    usage: "/<command> [playername]"
+  nickname:
+    description: Ändere den Nicknamen eines Nutzers.
+    usage: "/<command> [playername] [nickname]"
+  resetnickname:
+    description: Setzt den Nicknamen eines Nutzers zurück.
+    usage: "/<command> [playername]"
+  sethome:
+    description: Setzt einen Homepunkt.
+    usage: "/<command>"
+  home:
+    description: Teleporiert dich zu deinem Homepunkt.
+    usage: "/<command>"
+  help:
+    description: Ersetzt Help-Command durch Info-Command.
+    usage: "/<command>"
+  plugins:
+    description: Entfernt den Bukkit /plugins command.
+  pl:
+    description: Entfernt den Bukkit /plugins command.
+  clearchat:
+    description: Leert den Chat.
+    usage: "/<command>"

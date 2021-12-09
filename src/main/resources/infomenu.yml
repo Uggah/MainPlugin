@@ -1,0 +1,19 @@
+infoMenu:
+  - "§6--- Info Menü ---"
+  - "§7Wenn Du Hilfe rund um den Server benötigst, melde dich bitte bei den Admins."
+  - "§7Solltest du allerdings nach einem bestimmten Befehl suchen, kannst du dich in der folgenden Liste umsehen!"
+commands:
+  - "info"
+  - "msg"
+  - "clearchat"
+  - "spawn"
+  - "ping"
+  - "tpa"
+  - "tpaccept"
+  - "sethome"
+  - "home"
+  - "settings"
+colors:
+  commandName: "YELLOW"
+  description: "GRAY"
+  colon: "DARK_GRAY"
