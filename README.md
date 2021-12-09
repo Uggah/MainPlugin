@@ -36,6 +36,21 @@ Just plug it into your plugin folder and you're good to go.
 ## Why does this exist?
 The sole purpose of this plugin is to be used in the context of a minecraft server a few fellow students and I organize for ourselves. Never, did I have the idea that this plugin should run on any other servers than ours, but due to transparency reasons I'm publishing it here under the Affero GPL License v3.0.
 
+## Configuration
+There are three config files:
+- config (main config file)
+- usersettings
+- infomenu
+
+### Main config
+Here, you can change the messages sent by the plugin. By default all messages are in German as this plugin was written for a private German minecraft server.
+
+### User settings config
+This is the file where every setting a user makes is stored. It may be replaced with a database in the future.
+
+### Info menu config
+Here, you can adjust what is sent to the user when he uses the /info command.
+
 # License
 MainPlugin (c) 2021 Lucca Greschner and contributors
 
