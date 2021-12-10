@@ -1,6 +1,6 @@
-package de.lifeminer.mc.MainPlugin.eventlisteners;
+package de.lifeminer.mc.mainplugin.eventlisteners;
 
-import de.lifeminer.mc.MainPlugin.MainPlugin;
+import de.lifeminer.mc.mainplugin.MainPlugin;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

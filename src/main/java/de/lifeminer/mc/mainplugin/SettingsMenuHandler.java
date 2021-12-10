@@ -1,4 +1,4 @@
-package de.lifeminer.mc.MainPlugin;
+package de.lifeminer.mc.mainplugin;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

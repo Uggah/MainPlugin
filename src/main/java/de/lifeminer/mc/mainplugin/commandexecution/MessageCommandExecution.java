@@ -1,6 +1,6 @@
-package de.lifeminer.mc.MainPlugin.commandexecution;
+package de.lifeminer.mc.mainplugin.commandexecution;
 
-import de.lifeminer.mc.MainPlugin.MainPlugin;
+import de.lifeminer.mc.mainplugin.MainPlugin;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;

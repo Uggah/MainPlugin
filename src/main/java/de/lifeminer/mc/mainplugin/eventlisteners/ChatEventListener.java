@@ -1,6 +1,6 @@
-package de.lifeminer.mc.MainPlugin.eventlisteners;
+package de.lifeminer.mc.mainplugin.eventlisteners;
 
-import de.lifeminer.mc.MainPlugin.MainPlugin;
+import de.lifeminer.mc.mainplugin.MainPlugin;
 import net.md_5.bungee.api.chat.ClickEvent;
 import net.md_5.bungee.api.chat.HoverEvent;
 import net.md_5.bungee.api.chat.TextComponent;

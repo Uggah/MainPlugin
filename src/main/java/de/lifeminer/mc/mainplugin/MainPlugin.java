@@ -1,13 +1,13 @@
-package de.lifeminer.mc.MainPlugin;
+package de.lifeminer.mc.mainplugin;
 
-import de.lifeminer.mc.MainPlugin.commandexecution.GeneralCommandExecution;
-import de.lifeminer.mc.MainPlugin.commandexecution.MessageCommandExecution;
-import de.lifeminer.mc.MainPlugin.commandexecution.SettingsCommandExecution;
-import de.lifeminer.mc.MainPlugin.commandexecution.TeleportationCommandExecution;
-import de.lifeminer.mc.MainPlugin.eventlisteners.ChatEventListener;
-import de.lifeminer.mc.MainPlugin.eventlisteners.CommandEventListener;
-import de.lifeminer.mc.MainPlugin.eventlisteners.JoinQuitEventListener;
-import de.lifeminer.mc.MainPlugin.eventlisteners.SettingsMenuEventListener;
+import de.lifeminer.mc.mainplugin.commandexecution.GeneralCommandExecution;
+import de.lifeminer.mc.mainplugin.commandexecution.MessageCommandExecution;
+import de.lifeminer.mc.mainplugin.commandexecution.SettingsCommandExecution;
+import de.lifeminer.mc.mainplugin.commandexecution.TeleportationCommandExecution;
+import de.lifeminer.mc.mainplugin.eventlisteners.ChatEventListener;
+import de.lifeminer.mc.mainplugin.eventlisteners.CommandEventListener;
+import de.lifeminer.mc.mainplugin.eventlisteners.JoinQuitEventListener;
+import de.lifeminer.mc.mainplugin.eventlisteners.SettingsMenuEventListener;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
