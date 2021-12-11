@@ -37,9 +37,9 @@ public class MessageCommandExecution implements CommandExecutor {
                 if(receiver != null){
                     if(sender != receiver){
                         if (sender instanceof Player){
-                            String textReceiver = standardConfig.getString("messages.messageReceived").replaceAll("%sender%", ((Player) sender).getDisplayName()).replaceAll("%receiver%", receiver.getDisplayName());
+                            String textReceiver = standardConfig.getString("messages.messageReceived").replace("%sender%", ((Player) sender).getDisplayName()).replace("%receiver%", receiver.getDisplayName());
                             receiver.sendMessage(textReceiver + message);
-                            String textSender = standardConfig.getString("messages.messageSent").replaceAll("%sender%", ((Player) sender).getDisplayName()).replaceAll("%receiver%", receiver.getDisplayName());
+                            String textSender = standardConfig.getString("messages.messageSent").replace("%sender%", ((Player) sender).getDisplayName()).replace("%receiver%", receiver.getDisplayName());
                             sender.sendMessage(textSender + message);
                         } else if (sender instanceof ConsoleCommandSender){
                             receiver.sendMessage(standardConfig.getString("messages.messageReceivedServeradmin") + message);

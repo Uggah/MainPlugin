@@ -78,7 +78,7 @@ public class GeneralCommandExecution implements CommandExecutor {
                 } else if (intPing > 100){
                     formattedPing = "§4" + ping + "§7";
                 }
-                String text = standardConfig.getString("ping.message").replaceAll("%ping%", formattedPing);
+                String text = standardConfig.getString("ping.message").replace("%ping%", formattedPing);
                 sender.sendMessage(text);
                 return true;
             }

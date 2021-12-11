@@ -247,28 +247,28 @@ public final class MainPlugin extends JavaPlugin {
      */
 
     public String replaceChatColor(String in){
-        in = in.replaceAll("&0", "§0");
-        in = in.replaceAll("&1", "§1");
-        in = in.replaceAll("&2", "§2");
-        in = in.replaceAll("&3", "§3");
-        in = in.replaceAll("&4", "§4");
-        in = in.replaceAll("&5", "§5");
-        in = in.replaceAll("&6", "§6");
-        in = in.replaceAll("&7", "§7");
-        in = in.replaceAll("&8", "§8");
-        in = in.replaceAll("&9", "§9");
-        in = in.replaceAll("&a", "§a");
-        in = in.replaceAll("&b", "§b");
-        in = in.replaceAll("&c", "§c");
-        in = in.replaceAll("&d", "§d");
-        in = in.replaceAll("&e", "§e");
-        in = in.replaceAll("&f", "§f");
-        in = in.replaceAll("&k", "§k");
-        in = in.replaceAll("&l", "§l");
-        in = in.replaceAll("&m", "§m");
-        in = in.replaceAll("&n", "§n");
-        in = in.replaceAll("&o", "§o");
-        in = in.replaceAll("&r", "§r");
+        in = in.replace("&0", "§0");
+        in = in.replace("&1", "§1");
+        in = in.replace("&2", "§2");
+        in = in.replace("&3", "§3");
+        in = in.replace("&4", "§4");
+        in = in.replace("&5", "§5");
+        in = in.replace("&6", "§6");
+        in = in.replace("&7", "§7");
+        in = in.replace("&8", "§8");
+        in = in.replace("&9", "§9");
+        in = in.replace("&a", "§a");
+        in = in.replace("&b", "§b");
+        in = in.replace("&c", "§c");
+        in = in.replace("&d", "§d");
+        in = in.replace("&e", "§e");
+        in = in.replace("&f", "§f");
+        in = in.replace("&k", "§k");
+        in = in.replace("&l", "§l");
+        in = in.replace("&m", "§m");
+        in = in.replace("&n", "§n");
+        in = in.replace("&o", "§o");
+        in = in.replace("&r", "§r");
         return in;
     }
 

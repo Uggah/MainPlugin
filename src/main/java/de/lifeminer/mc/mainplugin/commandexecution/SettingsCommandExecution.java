@@ -90,10 +90,10 @@ public class SettingsCommandExecution implements CommandExecutor {
 
                         if(userSettingsConfig.isSet(sender.getName() + ".homeLocation.x")){
                             TextComponent homeString = new TextComponent(standardConfig.getString("settings.info.homeInfo")
-                                    .replaceAll("%X%", Integer.toString(userSettingsConfig.getInt(sender.getName() + ".homeLocation.x")))
-                                    .replaceAll("%Y%", Integer.toString(userSettingsConfig.getInt(sender.getName() + ".homeLocation.y")))
-                                    .replaceAll("%Z%", Integer.toString(userSettingsConfig.getInt(sender.getName() + ".homeLocation.z")))
-                                    .replaceAll("%world%", userSettingsConfig.getString(sender.getName() + ".homeLocation.world")));
+                                    .replace("%X%", Integer.toString(userSettingsConfig.getInt(sender.getName() + ".homeLocation.x")))
+                                    .replace("%Y%", Integer.toString(userSettingsConfig.getInt(sender.getName() + ".homeLocation.y")))
+                                    .replace("%Z%", Integer.toString(userSettingsConfig.getInt(sender.getName() + ".homeLocation.z")))
+                                    .replace("%world%", userSettingsConfig.getString(sender.getName() + ".homeLocation.world")));
 
                             sender.spigot().sendMessage(home, new TextComponent(standardConfig.getString("settings.info.colon")), homeString);
                         } else {
@@ -120,7 +120,7 @@ public class SettingsCommandExecution implements CommandExecutor {
                     if(Bukkit.getPlayer(playerName) != null && Bukkit.getPlayer(playerName).isOnline()){
                         Bukkit.getPlayer(playerName).setDisplayName(plugin.replaceChatColor(nickname));
                     }
-                    String text = standardConfig.getString("nickname.message").replaceAll("%player%" , playerName).replaceAll("%nickname%", nickname);
+                    String text = standardConfig.getString("nickname.message").replace("%player%" , playerName).replace("%nickname%", nickname);
                     sender.sendMessage(text);
                     return true;
                 } else {
@@ -136,7 +136,7 @@ public class SettingsCommandExecution implements CommandExecutor {
                 if(player.isOnline()){
                     player.setDisplayName(player.getName());
                 }
-                String text = standardConfig.getString("resetnickname.message").replaceAll("%player%" , player.getName());
+                String text = standardConfig.getString("resetnickname.message").replace("%player%" , player.getName());
                 sender.sendMessage(text);
                 return true;
             } else {

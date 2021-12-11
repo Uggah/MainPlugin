@@ -38,7 +38,7 @@ public class GroupCommandExecution implements CommandExecutor {
                         groupsConfig.set(groupTag + ".owner", sender.getName());
                         plugin.saveGroupsConfig();
 
-                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedGroup").replaceAll("%groupTag%", groupTag));
+                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedGroup").replace("%groupTag%", groupTag));
                     } else {
                         sender.sendMessage(standardConfig.getString("groups.messageGroupAlreadyExists"));
                     }
@@ -69,7 +69,7 @@ public class GroupCommandExecution implements CommandExecutor {
 
                                     groupsConfig.set(groupTag + ".members", groupsConfig.getStringList(groupTag + ".members").add(newMember.getName()));
                                     plugin.saveGroupsConfig();
-                                    sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedMember").replaceAll("%player%", newMember.getName()));
+                                    sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedMember").replace("%player%", newMember.getName()));
                                     return true;
                                 } else {
                                     sender.sendMessage(standardConfig.getString("groups.messagePlayerNotFound"));
@@ -83,7 +83,7 @@ public class GroupCommandExecution implements CommandExecutor {
                                     newMemberList.remove(member);
                                     groupsConfig.set(groupTag + ".members", newMemberList);
 
-                                    sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replaceAll("%player%", member));
+                                    sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replace("%player%", member));
                                     return true;
                                 } else {
                                     sender.sendMessage(standardConfig.getString("groups.messagePlayerNotFound"));

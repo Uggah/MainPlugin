@@ -59,7 +59,7 @@ public class ChatEventListener implements Listener {
                 }
 
                 if (word.equals("!all") && player.isOp()) {
-                    message = message.replaceAll("!all ", "");
+                    message = message.replace("!all ", "");
                     for(Player j : onlinePlayers){
                         j.playNote(j.getLocation(), Instrument.COW_BELL, new Note(10));
                         break;
@@ -69,7 +69,7 @@ public class ChatEventListener implements Listener {
 
 
             }
-            String prefix = standardConfig.getString("chat.prefix").replaceAll("%player%", player.getDisplayName());
+            String prefix = standardConfig.getString("chat.prefix").replace("%player%", player.getDisplayName());
 
             String textMessage = plugin.replaceChatColor(message);
 
@@ -90,7 +90,7 @@ public class ChatEventListener implements Listener {
                     if(Bukkit.getPlayer(s) != null){
                         Player receiver = Bukkit.getPlayer(s);
                         if(receiver.isOnline()){
-                            receiver.sendMessage(standardConfig.getString("groups.prefix").replaceAll("%group%", groupTag).replaceAll("%sender%", player.getDisplayName()) + message);
+                            receiver.sendMessage(standardConfig.getString("groups.prefix").replace("%group%", groupTag).replace("%sender%", player.getDisplayName()) + message);
                         }
                     }
                 }
