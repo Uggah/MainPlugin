@@ -111,6 +111,13 @@ public class GroupCommandExecution implements CommandExecutor {
                         return false;
                     }
                 }
+                if (args[0].equalsIgnoreCase("help")){
+                    List<String> message = standardConfig.getStringList("groups.help.message");
+                    for (String s : message){
+                        sender.sendMessage(s);
+                    }
+                    return true;
+                }
             }
         }
         return false;

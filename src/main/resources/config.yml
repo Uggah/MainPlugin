@@ -91,3 +91,11 @@ groups:
   noPermissionForGroup: "§cDu hast keine Erlaubnis diese Gruppe zu verändern!"
   prefix: "§7[§9%group%§7] §e%sender%§7:> "
   bullet: "§7 - "
+  help:
+    message:
+      - "§7Hier findest du alle Optionen des Befehls /group:"
+      - "§e/group add <Gruppenname>§7: Erstellt eine neue Gruppe"
+      - "§e/group remove <Gruppenname>§7: Löscht eine Gruppe"
+      - "§e/group member add <Nutzername> <Gruppenname>§7: Fügt einen Spieler zu einer Gruppe hinzu"
+      - "§e/group member remove <Nutzername> <Gruppenname>§7: Entfernt einen Spieler aus einer Gruppe"
+
