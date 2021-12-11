@@ -78,3 +78,14 @@ colonCommand:
   message: "§cDas darfst du nicht!"
 plugin:
   message: "§cDas darfst du nicht!"
+groups:
+  messageGroupNotFound: "§cDie gewünschte Gruppe konnte nicht gefunden werden."
+  messagePlayerNotFoung: "§cDer gewünschte Spieler konnte nicht gefunden werden."
+  messageList: "§7Die folgenden Gruppen wurden gefunden:"
+  messageSuccessfullyAddedMember: "§7Der Spieler §e%player% §7wurde erfolgreich zur Gruppe §9%groupTag% §7hinzugefügt!"
+  messageSuccessfullyAddedGroup: "§7Die Gruppe §9%groupTag% §7 wurde erfolgreich erstellt!"
+  messageSuccessfullyRemovedMember: "§7Der Spieler §e%player% §7wurde erfolgreich von der Gruppe §9%groupTag% §7entfernt!"
+  messageSuccessfullyRemovedGroup: "§7Die Gruppe §9%groupTag% §7 wurde erfolgreich gelöscht!"
+  noPermissionForGroup: "§cDu hast keine Erlaubnis diese Gruppe zu verändern!"
+  prefix: "§7[§9%group%§7] §e%sender%§7:> "
+  bullet: "§7 - "

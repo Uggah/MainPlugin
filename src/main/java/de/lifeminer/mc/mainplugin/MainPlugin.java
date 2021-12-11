@@ -25,12 +25,14 @@ public final class MainPlugin extends JavaPlugin {
 
     private File infoMenuConfigFile;
     private File userSettingsConfigFile;
+    private File groupsFile;
 
     // Declaration of Configs
 
     private FileConfiguration standardConfig;
     private FileConfiguration infoMenuConfig;
     private FileConfiguration userSettingsConfig;
+    private FileConfiguration groupsConfig;
 
     // Declaration of the scheduler used to schedule actions
 
@@ -52,6 +54,7 @@ public final class MainPlugin extends JavaPlugin {
 
         this.createInfoMenuConfig();
         this.createUserSettingsConfig();
+        this.createGroupsConfig();
 
         // This will set the class GeneralCommandExecution as the Executor for general commands
 
@@ -63,6 +66,7 @@ public final class MainPlugin extends JavaPlugin {
         // This will set the class MessageCommandExecution as the Executor for the following commands
 
         this.getCommand("msg").setExecutor(new MessageCommandExecution(this));
+        this.getCommand("group").setExecutor(new MessageCommandExecution(this));
 
         // This will set the class TeleportationCommandExecution as the Executor for the following commands
 
@@ -117,6 +121,15 @@ public final class MainPlugin extends JavaPlugin {
 
     public FileConfiguration getUserSettingsConfig() {
         return this.userSettingsConfig;
+    }
+
+    /**
+     * getGroupsConfig is the getter-method for the groupsConfig.
+     * @return FileConfiguration groupsConfig
+     */
+
+    public FileConfiguration getGroupsConfig() {
+        return this.groupsConfig;
     }
 
     /**
@@ -189,6 +202,38 @@ public final class MainPlugin extends JavaPlugin {
             userSettingsConfig.set(player.getName() + ".noteOnChat", true);
             userSettingsConfig.set(player.getName() + ".configCreated", true);
             saveUserSettingsConfig();
+        }
+    }
+
+    /**
+     * createGroupsConfig creates the custom config groups.
+     */
+
+    private void createGroupsConfig() {
+        groupsFile = new File(getDataFolder(), "groups.yml");
+        if (!groupsFile.exists()) {
+            groupsFile.getParentFile().mkdirs();
+            saveResource("groups.yml", false);
+        }
+
+        groupsConfig = new YamlConfiguration();
+        try {
+            groupsConfig.load(groupsFile);
+        } catch (IOException | InvalidConfigurationException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * saveGroupsConfig saves the groups.
+     */
+
+    public void saveGroupsConfig(){
+        try {
+            this.groupsConfig.save(this.groupsFile);
+            this.getLogger().log(Level.INFO, "Successfully saved groups!");
+        } catch (IOException e) {
+            this.getLogger().log(Level.SEVERE, "Unable to save" + groupsFile.getName());
         }
     }
 
