@@ -23,7 +23,7 @@ public class CommandEventListener implements Listener {
                 e.setCancelled(true);
                 e.getPlayer().sendMessage(standardConfig.getString("colonCommand.message"));
             } else
-            if (e.getMessage().split(" ")[0].contains("plugins")) {
+            if (e.getMessage().split(" ")[0].contains("plugins") || e.getMessage().split(" ")[0].contains("pl")) {
                 e.setCancelled(true);
                 e.getPlayer().sendMessage(standardConfig.getString("plugin.message"));
             }
