@@ -46,8 +46,6 @@ commands:
     usage: "/<command>"
   plugins:
     description: Entfernt den Bukkit /plugins command.
-  pl:
-    description: Entfernt den Bukkit /plugins command.
   clearchat:
     description: Leert den Chat.
     usage: "/<command>"
