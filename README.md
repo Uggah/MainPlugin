@@ -30,6 +30,7 @@ This is my first own-developed plugin. So don't expect to find refined code with
 - In chat, the message prefix can be changed. When it is clicked in-game, the player can privately message the sender of the particular message.
 - When using an '@<groupTag>' in the beginning of a chat message, the plugin tries to send your message only to the group members.
 - When your name is mentioned in the chat, you get a notification. This can be turned off individually using the /settings command.
+- When using '!all' in the beginning of a chat message, the plugin sends a sound to every player. The '!all' gets removed from the message.
 
 ### Permissions
 This plugin does not work with permissions as it is intended to be as light weight as possible. Also, the original purpose of it didn't need it to have permissions.
