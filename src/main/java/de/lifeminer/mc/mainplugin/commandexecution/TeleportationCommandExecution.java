@@ -83,8 +83,8 @@ public class TeleportationCommandExecution implements CommandExecutor {
         if(cmd.getName().equalsIgnoreCase("tpa")){
             if(args.length == 1){
                 Player receiver = Bukkit.getPlayer(args[0]);
-                if(receiver != null){
-                    pendingTpaRequests.put(receiver.getName(), ((Player) sender).getName());
+                if(receiver != null && receiver != sender){
+                    pendingTpaRequests.put(receiver.getName(), sender.getName());
 
                     String prompt = standardConfig.getString("tpa.prompt").replaceAll("%player%", ((Player) sender).getDisplayName());
                     TextComponent[] promptComponent = {new TextComponent(prompt.split("/tpaccept")[0]), new TextComponent(prompt.split("/tpaccept")[1])};
