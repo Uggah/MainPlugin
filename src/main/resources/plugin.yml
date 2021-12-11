@@ -1,5 +1,5 @@
 name: MainPlugin
-version: 0.1
+version: 0.2
 main: de.lifeminer.mc.mainplugin.MainPlugin
 api-version: 1.18
 author: Uggah
