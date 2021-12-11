@@ -1,9 +1,6 @@
 package de.lifeminer.mc.mainplugin;
 
-import de.lifeminer.mc.mainplugin.commandexecution.GeneralCommandExecution;
-import de.lifeminer.mc.mainplugin.commandexecution.MessageCommandExecution;
-import de.lifeminer.mc.mainplugin.commandexecution.SettingsCommandExecution;
-import de.lifeminer.mc.mainplugin.commandexecution.TeleportationCommandExecution;
+import de.lifeminer.mc.mainplugin.commandexecution.*;
 import de.lifeminer.mc.mainplugin.eventlisteners.ChatEventListener;
 import de.lifeminer.mc.mainplugin.eventlisteners.CommandEventListener;
 import de.lifeminer.mc.mainplugin.eventlisteners.JoinQuitEventListener;
@@ -66,7 +63,10 @@ public final class MainPlugin extends JavaPlugin {
         // This will set the class MessageCommandExecution as the Executor for the following commands
 
         this.getCommand("msg").setExecutor(new MessageCommandExecution(this));
-        this.getCommand("group").setExecutor(new MessageCommandExecution(this));
+
+        // This will set the class GroupCommandExecution as the Executor for the following commands
+
+        this.getCommand("group").setExecutor(new GroupCommandExecution(this));
 
         // This will set the class TeleportationCommandExecution as the Executor for the following commands
 

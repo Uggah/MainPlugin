@@ -80,8 +80,10 @@ plugin:
   message: "§cDas darfst du nicht!"
 groups:
   messageGroupNotFound: "§cDie gewünschte Gruppe konnte nicht gefunden werden."
-  messagePlayerNotFoung: "§cDer gewünschte Spieler konnte nicht gefunden werden."
+  messagePlayerNotFound: "§cDer gewünschte Spieler konnte nicht gefunden werden."
+  messageGroupAlreadyExists: "§cDiese Gruppe existiert bereits!"
   messageList: "§7Die folgenden Gruppen wurden gefunden:"
+  messageListMembers: "§7Die folgenden Gruppenmitglieder wurden gefunden:"
   messageSuccessfullyAddedMember: "§7Der Spieler §e%player% §7wurde erfolgreich zur Gruppe §9%groupTag% §7hinzugefügt!"
   messageSuccessfullyAddedGroup: "§7Die Gruppe §9%groupTag% §7 wurde erfolgreich erstellt!"
   messageSuccessfullyRemovedMember: "§7Der Spieler §e%player% §7wurde erfolgreich von der Gruppe §9%groupTag% §7entfernt!"

@@ -58,16 +58,20 @@ public class ChatEventListener implements Listener {
                     }
                 }
 
-                if (word.equals("@all") && player.isOp()) {
+                if (word.equals("!all") && player.isOp()) {
+                    message = message.replaceAll("!all ", "");
                     for(Player j : onlinePlayers){
                         j.playNote(j.getLocation(), Instrument.COW_BELL, new Note(10));
                         break;
                     }
+
                 }
+
+
             }
             String prefix = standardConfig.getString("chat.prefix").replaceAll("%player%", player.getDisplayName());
 
-            String textMessage = plugin.replaceChatColor(e.getMessage()).replaceAll("@all ", "");
+            String textMessage = plugin.replaceChatColor(message);
 
             TextComponent clickAbleMessage = new TextComponent(prefix);
             TextComponent normalMessage = new TextComponent(textMessage);
@@ -77,9 +81,11 @@ public class ChatEventListener implements Listener {
             Bukkit.spigot().broadcast(clickAbleMessage, normalMessage);
             Bukkit.getLogger().log(Level.INFO, prefix + message);
         } else {
+
             String groupTag = words[0].substring(1);
             if(groupsConfig.contains(groupTag) && groupsConfig.getStringList(groupTag + ".members").contains(player.getName())){
                 List<String> members = groupsConfig.getStringList(groupTag + ".members");
+                message = message.replace("@" + groupTag + " ", "");
                 for(String s : members){
                     if(Bukkit.getPlayer(s) != null){
                         Player receiver = Bukkit.getPlayer(s);
