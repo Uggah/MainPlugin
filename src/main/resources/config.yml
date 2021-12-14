@@ -98,7 +98,7 @@ groups:
     message:
       - "§7Hier findest du alle Optionen des Befehls /group:"
       - "§e/group list§7: Zeigt alle Gruppen an, in denen du Mitglied bist"
-      - "$e/group leave <Gruppenname>§7: Verlasse eine Gruppe"
+      - "§e/group leave <Gruppenname>§7: Verlasse eine Gruppe"
       - "§e/group add <Gruppenname>§7: Erstellt eine neue Gruppe"
       - "§e/group remove <Gruppenname>§7: Löscht eine Gruppe"
       - "§e/group member add <Nutzername> <Gruppenname>§7: Fügt einen Spieler zu einer Gruppe hinzu"

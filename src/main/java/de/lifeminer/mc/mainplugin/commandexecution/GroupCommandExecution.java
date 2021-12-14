@@ -48,8 +48,8 @@ public class GroupCommandExecution implements CommandExecutor {
                     String groupTag = args[1];
                     if (groupsConfig.contains(groupTag) && (sender.isOp() || groupsConfig.getString(groupTag + ".owner").equals(sender.getName()))) {
                         List<String> members = groupsConfig.getStringList(groupTag + ".members");
+                        sender.sendMessage(standardConfig.getString("groups.messageListMembers"));
                         for (String s : members) {
-                            sender.sendMessage(standardConfig.getString("groups.messageListMembers"));
                             sender.sendMessage(standardConfig.getString("groups.bullet") + s);
                         }
                         return true;
@@ -110,7 +110,9 @@ public class GroupCommandExecution implements CommandExecutor {
                                 if (Bukkit.getPlayer(args[2]) != null) {
                                     Player newMember = Bukkit.getPlayer(args[2]);
                                     if(!groupsConfig.getStringList(groupTag + ".members").contains(newMember.getName())){
-                                        groupsConfig.set(groupTag + ".members", groupsConfig.getStringList(groupTag + ".members").add(newMember.getName()));
+                                        List<String> members = groupsConfig.getStringList(groupTag + ".members");
+                                        members.add(newMember.getName());
+                                        groupsConfig.set(groupTag + ".members", members);
                                         plugin.saveGroupsConfig();
                                         sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedMember").replace("%player%", newMember.getName()).replace("%groupTag%", groupTag));
                                         return true;
@@ -130,7 +132,7 @@ public class GroupCommandExecution implements CommandExecutor {
                                         List<String> newMemberList = groupsConfig.getStringList(groupTag + ".members");
                                         newMemberList.remove(member);
                                         groupsConfig.set(groupTag + ".members", newMemberList);
-
+                                        plugin.saveGroupsConfig();
                                         sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replace("%player%", member));
                                         return true;
                                     } else {
