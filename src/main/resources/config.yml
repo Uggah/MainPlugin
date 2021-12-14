@@ -103,5 +103,6 @@ groups:
       - "§e/group remove <Gruppenname>§7: Löscht eine Gruppe"
       - "§e/group member add <Nutzername> <Gruppenname>§7: Fügt einen Spieler zu einer Gruppe hinzu"
       - "§e/group member remove <Nutzername> <Gruppenname>§7: Entfernt einen Spieler aus einer Gruppe"
+      - "§e/group listmembers <Gruppenname>§7: Listet alle Mitglieder einer Gruppe auf."
 
 
