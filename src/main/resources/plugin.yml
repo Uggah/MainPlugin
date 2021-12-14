@@ -51,4 +51,4 @@ commands:
     usage: "/<command>"
   group:
     description: Befehl um mit Gruppen zu interagieren.
-    usage: "/<command> [add|remove|member]"
+    usage: "/<command> help"
