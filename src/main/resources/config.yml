@@ -82,6 +82,8 @@ groups:
   messageGroupNotFound: "§cDie gewünschte Gruppe konnte nicht gefunden werden."
   messagePlayerNotFound: "§cDer gewünschte Spieler konnte nicht gefunden werden."
   messageGroupAlreadyExists: "§cDiese Gruppe existiert bereits!"
+  messagePlayerAlreadyInGroup: "§cDieser Spieler ist bereits Mitglied der Gruppe."
+  messageRemoveOwner: "§cDer Besitzer einer Gruppe darf nicht aus ihr entfernt werden!"
   messageList: "§7Die folgenden Gruppen wurden gefunden:"
   messageListMembers: "§7Die folgenden Gruppenmitglieder wurden gefunden:"
   messageSuccessfullyAddedMember: "§7Der Spieler §e%player% §7wurde erfolgreich zur Gruppe §9%groupTag% §7hinzugefügt!"
@@ -94,8 +96,10 @@ groups:
   help:
     message:
       - "§7Hier findest du alle Optionen des Befehls /group:"
+      - "§e/group list§7: Zeigt alle Gruppen an, in denen du Mitglied bist"
       - "§e/group add <Gruppenname>§7: Erstellt eine neue Gruppe"
       - "§e/group remove <Gruppenname>§7: Löscht eine Gruppe"
       - "§e/group member add <Nutzername> <Gruppenname>§7: Fügt einen Spieler zu einer Gruppe hinzu"
       - "§e/group member remove <Nutzername> <Gruppenname>§7: Entfernt einen Spieler aus einer Gruppe"
+
 

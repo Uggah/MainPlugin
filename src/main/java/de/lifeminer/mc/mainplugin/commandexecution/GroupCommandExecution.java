@@ -57,6 +57,18 @@ public class GroupCommandExecution implements CommandExecutor {
                         return false;
                     }
                 }
+                if (args[0].equalsIgnoreCase("remove")){
+                    String groupTag = args[1];
+                    if(groupsConfig.contains(args[1]) && (groupsConfig.getString(groupTag + ".owner").equals(sender.getName()) || sender.isOp())){
+                            groupsConfig.set(groupTag, null);
+                            plugin.saveGroupsConfig();
+                            sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedGroup").replace("%groupTag%", groupTag));
+                            return true;
+                    } else {
+                        sender.sendMessage(standardConfig.getString("groups.messageGroupNotFound"));
+                        return true;
+                    }
+                }
             }
             if (args.length == 4) {
                 if (args[0].equalsIgnoreCase("member")) {
@@ -66,11 +78,15 @@ public class GroupCommandExecution implements CommandExecutor {
                             if (args[1].equalsIgnoreCase("add")) {
                                 if (Bukkit.getPlayer(args[2]) != null) {
                                     Player newMember = Bukkit.getPlayer(args[2]);
-
-                                    groupsConfig.set(groupTag + ".members", groupsConfig.getStringList(groupTag + ".members").add(newMember.getName()));
-                                    plugin.saveGroupsConfig();
-                                    sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedMember").replace("%player%", newMember.getName()));
-                                    return true;
+                                    if(!groupsConfig.getStringList(groupTag + ".members").contains(newMember.getName())){
+                                        groupsConfig.set(groupTag + ".members", groupsConfig.getStringList(groupTag + ".members").add(newMember.getName()));
+                                        plugin.saveGroupsConfig();
+                                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedMember").replace("%player%", newMember.getName()).replace("%groupTag%", groupTag));
+                                        return true;
+                                    } else {
+                                        sender.sendMessage(standardConfig.getString("groups.messagePlayerAlreadyInGroup"));
+                                        return true;
+                                    }
                                 } else {
                                     sender.sendMessage(standardConfig.getString("groups.messagePlayerNotFound"));
                                     return true;
@@ -78,23 +94,30 @@ public class GroupCommandExecution implements CommandExecutor {
                             }
                             if (args[1].equalsIgnoreCase("remove")) {
                                 String member = args[2];
-                                if (groupsConfig.getStringList(groupTag + ".members").contains(member)) {
-                                    List<String> newMemberList = groupsConfig.getStringList(groupTag + ".members");
-                                    newMemberList.remove(member);
-                                    groupsConfig.set(groupTag + ".members", newMemberList);
+                                if(!groupsConfig.getString(groupTag + ".owner").equals(member)){
+                                    if (groupsConfig.getStringList(groupTag + ".members").contains(member)) {
+                                        List<String> newMemberList = groupsConfig.getStringList(groupTag + ".members");
+                                        newMemberList.remove(member);
+                                        groupsConfig.set(groupTag + ".members", newMemberList);
 
-                                    sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replace("%player%", member));
-                                    return true;
+                                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replace("%player%", member));
+                                        return true;
+                                    } else {
+                                        sender.sendMessage(standardConfig.getString("groups.messagePlayerNotFound"));
+                                        return true;
+                                    }
                                 } else {
-                                    sender.sendMessage(standardConfig.getString("groups.messagePlayerNotFound"));
+                                    sender.sendMessage(standardConfig.getString("groups.messageRemoveOwner"));
                                     return true;
                                 }
                             }
                         } else {
                             sender.sendMessage(standardConfig.getString("groups.noPermissionForGroup"));
+                            return true;
                         }
                     } else {
                         sender.sendMessage(standardConfig.getString("groups.messageGroupNotFound"));
+                        return true;
                     }
                 }
             }
@@ -102,13 +125,20 @@ public class GroupCommandExecution implements CommandExecutor {
                 if (args[0].equalsIgnoreCase("list")) {
                     if (sender.isOp()) {
                         Set<String> groups = groupsConfig.getKeys(false);
+                        sender.sendMessage(standardConfig.getString("groups.messageList"));
                         for (String s : groups) {
-                            sender.sendMessage(standardConfig.getString("groups.messageList"));
                             sender.sendMessage(standardConfig.getString("groups.bullet") + s);
                         }
                         return true;
                     } else {
-                        return false;
+                        Set<String> groups = groupsConfig.getKeys(false);
+                        sender.sendMessage(standardConfig.getString("groups.messageList"));
+                        for (String groupTag : groups){
+                            if(groupsConfig.getStringList(groupTag + ".members").contains(sender.getName())){
+                                sender.sendMessage(standardConfig.getString("groups.bullet" + groupTag));
+                            }
+                        }
+                        return true;
                     }
                 }
                 if (args[0].equalsIgnoreCase("help")){
