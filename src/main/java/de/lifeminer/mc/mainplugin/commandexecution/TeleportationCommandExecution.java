@@ -83,10 +83,10 @@ public class TeleportationCommandExecution implements CommandExecutor {
         if(cmd.getName().equalsIgnoreCase("tpa")){
             if(args.length == 1){
                 Player receiver = Bukkit.getPlayer(args[0]);
-                if(receiver != null){
-                    pendingTpaRequests.put(receiver.getName(), ((Player) sender).getName());
+                if(receiver != null && receiver != sender){
+                    pendingTpaRequests.put(receiver.getName(), sender.getName());
 
-                    String prompt = standardConfig.getString("tpa.prompt").replaceAll("%player%", ((Player) sender).getDisplayName());
+                    String prompt = standardConfig.getString("tpa.prompt").replace("%player%", ((Player) sender).getDisplayName());
                     TextComponent[] promptComponent = {new TextComponent(prompt.split("/tpaccept")[0]), new TextComponent(prompt.split("/tpaccept")[1])};
                     TextComponent acceptCommand = new TextComponent("/tpaccept " + sender.getName());
                     acceptCommand.setColor(ChatColor.RED);
@@ -94,7 +94,7 @@ public class TeleportationCommandExecution implements CommandExecutor {
                     acceptCommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Klick!")));
                     receiver.spigot().sendMessage(promptComponent[0], acceptCommand, promptComponent[1]);
 
-                    sender.sendMessage(standardConfig.getString("tpa.requestSent").replaceAll("%player%", receiver.getDisplayName()));
+                    sender.sendMessage(standardConfig.getString("tpa.requestSent").replace("%player%", receiver.getDisplayName()));
 
                     plugin.getScheduler().runTaskLater(plugin, new Runnable() {
                         @Override
@@ -119,11 +119,11 @@ public class TeleportationCommandExecution implements CommandExecutor {
                     Location location = player.getLocation();
                     requestingPlayer.teleport(location);
                     pendingTpaRequests.remove(requestingPlayer.getName());
-                    sender.sendMessage(standardConfig.getString("tpa.teleportationSuccessful").replaceAll("%player%", requestingPlayer.getDisplayName()));
-                    requestingPlayer.sendMessage(standardConfig.getString("tpaccept.teleportationSuccessful").replaceAll("%player%", player.getDisplayName()));
+                    sender.sendMessage(standardConfig.getString("tpa.teleportationSuccessful").replace("%player%", requestingPlayer.getDisplayName()));
+                    requestingPlayer.sendMessage(standardConfig.getString("tpaccept.teleportationSuccessful").replace("%player%", player.getDisplayName()));
                     return true;
                 } else {
-                    String text = standardConfig.getString("tpaccept.requestNotFound").replaceAll("%player%", args[0]);
+                    String text = standardConfig.getString("tpaccept.requestNotFound").replace("%player%", args[0]);
                     sender.sendMessage(text);
                     return false;
                 }

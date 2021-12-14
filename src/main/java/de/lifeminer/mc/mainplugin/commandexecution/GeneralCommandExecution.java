@@ -78,7 +78,7 @@ public class GeneralCommandExecution implements CommandExecutor {
                 } else if (intPing > 100){
                     formattedPing = "§4" + ping + "§7";
                 }
-                String text = standardConfig.getString("ping.message").replaceAll("%ping%", formattedPing);
+                String text = standardConfig.getString("ping.message").replace("%ping%", formattedPing);
                 sender.sendMessage(text);
                 return true;
             }
@@ -94,6 +94,17 @@ public class GeneralCommandExecution implements CommandExecutor {
                 onCommand(sender, cmd, label, args);
             }
             return true;
+        }
+
+        if(cmd.getName().equalsIgnoreCase("reloadconfig")){
+            if(sender.isOp()){
+                plugin.reloadConfigs();
+                sender.sendMessage(standardConfig.getString("reload.message"));
+                return true;
+            } else {
+                sender.sendMessage(standardConfig.getString("plugin.message"));
+                return true;
+            }
         }
 
         if(cmd.getName().equalsIgnoreCase("clearchat")){

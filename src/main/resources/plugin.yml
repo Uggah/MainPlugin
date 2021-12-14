@@ -1,5 +1,5 @@
 name: MainPlugin
-version: 0.1
+version: 0.2
 main: de.lifeminer.mc.mainplugin.MainPlugin
 api-version: 1.18
 author: Uggah
@@ -48,4 +48,10 @@ commands:
     description: Entfernt den Bukkit /plugins command.
   clearchat:
     description: Leert den Chat.
+    usage: "/<command>"
+  group:
+    description: Befehl um mit Gruppen zu interagieren.
+    usage: "/<command> help"
+  reloadconfig:
+    description: Lädt die Konfigurationsdateien neu.
     usage: "/<command>"

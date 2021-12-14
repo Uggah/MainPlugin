@@ -9,16 +9,19 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
+
 public class MessageCommandExecution implements CommandExecutor {
 
     private final MainPlugin plugin;
     private final FileConfiguration standardConfig;
-    private final FileConfiguration userSettingsConfig;
+
 
     public MessageCommandExecution(MainPlugin plugin) {
         this.plugin = plugin;
         standardConfig = plugin.getConfig();
-        userSettingsConfig = plugin.getUserSettingsConfig();
     }
 
     @Override
@@ -34,9 +37,9 @@ public class MessageCommandExecution implements CommandExecutor {
                 if(receiver != null){
                     if(sender != receiver){
                         if (sender instanceof Player){
-                            String textReceiver = standardConfig.getString("messages.messageReceived").replaceAll("%sender%", ((Player) sender).getDisplayName()).replaceAll("%receiver%", receiver.getDisplayName());
+                            String textReceiver = standardConfig.getString("messages.messageReceived").replace("%sender%", ((Player) sender).getDisplayName()).replace("%receiver%", receiver.getDisplayName());
                             receiver.sendMessage(textReceiver + message);
-                            String textSender = standardConfig.getString("messages.messageSent").replaceAll("%sender%", ((Player) sender).getDisplayName()).replaceAll("%receiver%", receiver.getDisplayName());
+                            String textSender = standardConfig.getString("messages.messageSent").replace("%sender%", ((Player) sender).getDisplayName()).replace("%receiver%", receiver.getDisplayName());
                             sender.sendMessage(textSender + message);
                         } else if (sender instanceof ConsoleCommandSender){
                             receiver.sendMessage(standardConfig.getString("messages.messageReceivedServeradmin") + message);
@@ -55,6 +58,7 @@ public class MessageCommandExecution implements CommandExecutor {
                 return true;
             }
         }
+
         return false;
     }
 }

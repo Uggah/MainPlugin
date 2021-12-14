@@ -31,7 +31,7 @@ public class JoinQuitEventListener implements Listener {
             player.setDisplayName(userSettingsConfig.getString(player.getName() + ".nickname"));
         }
 
-        String text = standardConfig.getString("joinEvent.message").replaceAll("%player%", player.getDisplayName());
+        String text = standardConfig.getString("joinEvent.message").replace("%player%", player.getDisplayName());
         e.setJoinMessage(text);
 
     }
@@ -39,7 +39,7 @@ public class JoinQuitEventListener implements Listener {
     @EventHandler
     void onPlayerQuit(PlayerQuitEvent e){
         Player player = e.getPlayer();
-        String text = standardConfig.getString("quitEvent.message").replaceAll("%player%", player.getDisplayName());
+        String text = standardConfig.getString("quitEvent.message").replace("%player%", player.getDisplayName());
         e.setQuitMessage(text);
     }
 
