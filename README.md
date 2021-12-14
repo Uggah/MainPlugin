@@ -22,6 +22,7 @@ This is my first own-developed plugin. So don't expect to find refined code with
 - /home: Go home.
 - /spawn: Teleport to the spawn.
 - /group: Manage groups
+- /reloadconfirm: Reload configs
 
 ### Additional features
 - This plugin prohibits using the vanilla /help command and redirects to the /info command
