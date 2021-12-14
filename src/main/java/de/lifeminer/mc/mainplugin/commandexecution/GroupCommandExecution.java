@@ -69,6 +69,37 @@ public class GroupCommandExecution implements CommandExecutor {
                         return true;
                     }
                 }
+                if (args[0].equalsIgnoreCase("leave")){
+                    String groupTag = args[1];
+                    List<String> members = groupsConfig.getStringList(groupTag + ".members");
+                    if(!groupsConfig.getString(groupTag + ".owner").equals(sender.getName())){
+                        if(members.contains(sender.getName())){
+                            members.remove(sender.getName());
+                            groupsConfig.set(groupTag + ".members", members);
+                            plugin.saveGroupsConfig();
+                            sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyLeft").replace("%groupTag%", groupTag));
+                            return true;
+                        } else {
+                            sender.sendMessage(standardConfig.getString("groups.messageGroupNotFound"));
+                            return true;
+                        }
+                    } else {
+                        sender.sendMessage(standardConfig.getString("groups.messageRemoveOwner"));
+                        return true;
+                    }
+                }
+                if(args[0].equalsIgnoreCase("list")){
+                    if(args[1].equalsIgnoreCase("all")){
+                        if (sender.isOp()) {
+                            Set<String> groups = groupsConfig.getKeys(false);
+                            sender.sendMessage(standardConfig.getString("groups.messageList"));
+                            for (String s : groups) {
+                                sender.sendMessage(standardConfig.getString("groups.bullet") + s);
+                            }
+                            return true;
+                        }
+                    }
+                }
             }
             if (args.length == 4) {
                 if (args[0].equalsIgnoreCase("member")) {
@@ -123,23 +154,14 @@ public class GroupCommandExecution implements CommandExecutor {
             }
             if (args.length == 1) {
                 if (args[0].equalsIgnoreCase("list")) {
-                    if (sender.isOp()) {
-                        Set<String> groups = groupsConfig.getKeys(false);
-                        sender.sendMessage(standardConfig.getString("groups.messageList"));
-                        for (String s : groups) {
-                            sender.sendMessage(standardConfig.getString("groups.bullet") + s);
+                    Set<String> groups = groupsConfig.getKeys(false);
+                    sender.sendMessage(standardConfig.getString("groups.messageList"));
+                    for (String groupTag : groups){
+                        if(groupsConfig.getStringList(groupTag + ".members").contains(sender.getName())){
+                            sender.sendMessage(standardConfig.getString("groups.bullet" + groupTag));
                         }
-                        return true;
-                    } else {
-                        Set<String> groups = groupsConfig.getKeys(false);
-                        sender.sendMessage(standardConfig.getString("groups.messageList"));
-                        for (String groupTag : groups){
-                            if(groupsConfig.getStringList(groupTag + ".members").contains(sender.getName())){
-                                sender.sendMessage(standardConfig.getString("groups.bullet" + groupTag));
-                            }
-                        }
-                        return true;
                     }
+                    return true;
                 }
                 if (args[0].equalsIgnoreCase("help")){
                     List<String> message = standardConfig.getStringList("groups.help.message");

@@ -86,6 +86,7 @@ groups:
   messageRemoveOwner: "§cDer Besitzer einer Gruppe darf nicht aus ihr entfernt werden!"
   messageList: "§7Die folgenden Gruppen wurden gefunden:"
   messageListMembers: "§7Die folgenden Gruppenmitglieder wurden gefunden:"
+  messageSuccessfullyLeft: "§7Du bist erfolgreich aus der Gruppe §9%groupTag% §7ausgetreten!"
   messageSuccessfullyAddedMember: "§7Der Spieler §e%player% §7wurde erfolgreich zur Gruppe §9%groupTag% §7hinzugefügt!"
   messageSuccessfullyAddedGroup: "§7Die Gruppe §9%groupTag% §7 wurde erfolgreich erstellt!"
   messageSuccessfullyRemovedMember: "§7Der Spieler §e%player% §7wurde erfolgreich von der Gruppe §9%groupTag% §7entfernt!"
