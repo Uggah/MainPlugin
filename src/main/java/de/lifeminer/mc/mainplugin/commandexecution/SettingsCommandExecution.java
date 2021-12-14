@@ -83,7 +83,7 @@ public class SettingsCommandExecution implements CommandExecutor {
                         sender.spigot().sendMessage(username, new TextComponent(standardConfig.getString("settings.info.colon") + sender.getName()));
                         sender.spigot().sendMessage(uuid, new TextComponent(standardConfig.getString("settings.info.colon") + ((Player) sender).getUniqueId()));
                         sender.spigot().sendMessage(nickname, new TextComponent(standardConfig.getString("settings.info.colon") + ((Player) sender).getDisplayName()));
-                        sender.spigot().sendMessage(ipTag, new TextComponent(standardConfig.getString("settings.info.colon") + ((Player) sender).getAddress().getHostName()));
+                        sender.spigot().sendMessage(ipTag, new TextComponent(standardConfig.getString("settings.info.colon") + ((Player) sender).getAddress().getAddress().getHostAddress()));
                         sender.spigot().sendMessage(noteOnChat, new TextComponent(standardConfig.getString("settings.info.colon")
                                 + (userSettingsConfig.getBoolean(sender.getName() + ".noteOnChat")
                                 ? standardConfig.getString("settings.info.onTrue") : standardConfig.getString("settings.info.onFalse"))));
