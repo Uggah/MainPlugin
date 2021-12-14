@@ -15,6 +15,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.logging.Level;
@@ -39,36 +40,20 @@ public class ChatEventListener implements Listener {
         String message = e.getMessage();
         String[] words = message.split(" ");
         if(!message.startsWith("@")){
+            Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
+
+            this.notifyPlayer(player, words, onlinePlayers);
+
             for (String word : words) {
-                Player temp = Bukkit.getPlayer(word);
-                if (temp != null && temp != player) {
-                    if (userSettingsConfig.getBoolean(temp.getName() + ".noteOnChat")){
-                        Location loc = temp.getLocation();
-                        temp.playNote(loc, Instrument.XYLOPHONE, new Note(4));
-                        break;
-                    }
-                }
-
-                Collection<? extends Player> onlinePlayers = Bukkit.getOnlinePlayers();
-
-                for(Player j : onlinePlayers){
-                    if(j.getDisplayName().equalsIgnoreCase(word) && userSettingsConfig.getBoolean(j.getName() + ".noteOnChat")){
-                        j.playNote(j.getLocation(), Instrument.XYLOPHONE, new Note(4));
-                        break;
-                    }
-                }
-
                 if (word.equals("!all") && player.isOp()) {
                     message = message.replace("!all ", "");
                     for(Player j : onlinePlayers){
                         j.playNote(j.getLocation(), Instrument.COW_BELL, new Note(10));
                         break;
                     }
-
                 }
-
-
             }
+
             String prefix = standardConfig.getString("chat.prefix").replace("%player%", player.getDisplayName());
 
             String textMessage = plugin.replaceChatColor(message);
@@ -87,14 +72,22 @@ public class ChatEventListener implements Listener {
                 List<String> members = groupsConfig.getStringList(groupTag + ".members");
                 message = message.replace("@" + groupTag + " ", "");
                 message = plugin.replaceChatColor(message);
+                Collection<Player> playersInGroup = new ArrayList<>();
                 for(String s : members){
                     if(Bukkit.getPlayer(s) != null){
                         Player receiver = Bukkit.getPlayer(s);
+                        playersInGroup.add(receiver);
                         if(receiver.isOnline()){
                             receiver.sendMessage(standardConfig.getString("groups.prefix").replace("%group%", groupTag).replace("%sender%", player.getDisplayName()) + message);
                         }
                     }
                 }
+                if(!playersInGroup.isEmpty()){
+                    this.notifyPlayer(player, words, playersInGroup);
+                }
+
+
+
             } else {
                 player.sendMessage(standardConfig.getString("groups.messageGroupNotFound"));
             }
@@ -103,5 +96,25 @@ public class ChatEventListener implements Listener {
         e.setCancelled(true);
 
 
+    }
+
+    private void notifyPlayer(Player player, String[] words, Collection<? extends Player> targetedPlayers){
+        for (String word : words) {
+            Player temp = Bukkit.getPlayer(word);
+            if (temp != null && temp != player && targetedPlayers.contains(temp)) {
+                if (userSettingsConfig.getBoolean(temp.getName() + ".noteOnChat")){
+                    Location loc = temp.getLocation();
+                    temp.playNote(loc, Instrument.XYLOPHONE, new Note(4));
+                    break;
+                }
+            }
+
+            for(Player j : targetedPlayers){
+                if(j.getDisplayName().equalsIgnoreCase(word) && userSettingsConfig.getBoolean(j.getName() + ".noteOnChat")){
+                    j.playNote(j.getLocation(), Instrument.XYLOPHONE, new Note(4));
+                    break;
+                }
+            }
+        }
     }
 }
