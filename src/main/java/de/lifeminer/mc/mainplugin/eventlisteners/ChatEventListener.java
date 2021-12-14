@@ -86,6 +86,7 @@ public class ChatEventListener implements Listener {
             if(groupsConfig.contains(groupTag) && groupsConfig.getStringList(groupTag + ".members").contains(player.getName())){
                 List<String> members = groupsConfig.getStringList(groupTag + ".members");
                 message = message.replace("@" + groupTag + " ", "");
+                message = plugin.replaceChatColor(message);
                 for(String s : members){
                     if(Bukkit.getPlayer(s) != null){
                         Player receiver = Bukkit.getPlayer(s);
