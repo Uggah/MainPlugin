@@ -241,12 +241,18 @@ public final class MainPlugin extends JavaPlugin {
         }
     }
 
-    public void reloadConfig(){
-        this.createUserSettingsConfig();
-        this.createInfoMenuConfig();
-        this.createGroupsConfig();
-        super.reloadConfig();
+    public void reloadConfigs(){
+        try {
+            userSettingsConfig.load(new File(getDataFolder(), "usersettings.yml"));
+            infoMenuConfig.load(new File(getDataFolder(), "infomenu.yml"));
+            groupsConfig.load(new File(getDataFolder(), "groups.yml"));
+            standardConfig.load(new File(getDataFolder(), "config.yml"));
+        } catch (IOException | InvalidConfigurationException e){
+            e.printStackTrace();
+        }
     }
+
+
 
     /**
      * replaceChatColor replaces all the chat color codes with '&' in them with the minecraft color codes with '§' in them.

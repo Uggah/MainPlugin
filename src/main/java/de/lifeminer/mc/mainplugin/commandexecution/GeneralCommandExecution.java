@@ -98,7 +98,7 @@ public class GeneralCommandExecution implements CommandExecutor {
 
         if(cmd.getName().equalsIgnoreCase("reloadconfig")){
             if(sender.isOp()){
-                plugin.reloadConfig();
+                plugin.reloadConfigs();
                 sender.sendMessage(standardConfig.getString("reload.message"));
                 return true;
             } else {
