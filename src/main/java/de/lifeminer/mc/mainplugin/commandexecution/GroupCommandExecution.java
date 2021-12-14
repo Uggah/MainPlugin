@@ -200,7 +200,7 @@ public class GroupCommandExecution implements CommandExecutor {
                     sender.sendMessage(standardConfig.getString("groups.messageList"));
                     for (String groupTag : groups){
                         if(groupsConfig.getStringList(groupTag + ".members").contains(sender.getName())){
-                            sender.sendMessage(standardConfig.getString("groups.bullet" + groupTag));
+                            sender.sendMessage(standardConfig.getString("groups.bullet") + groupTag);
                         }
                     }
                     return true;
