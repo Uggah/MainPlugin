@@ -96,6 +96,17 @@ public class GeneralCommandExecution implements CommandExecutor {
             return true;
         }
 
+        if(cmd.getName().equalsIgnoreCase("reloadconfig")){
+            if(sender.isOp()){
+                plugin.reloadConfig();
+                sender.sendMessage(standardConfig.getString("reload.message"));
+                return true;
+            } else {
+                sender.sendMessage(standardConfig.getString("plugin.message"));
+                return true;
+            }
+        }
+
         if(cmd.getName().equalsIgnoreCase("clearchat")){
             for(int i = 0; i < 30; i++){
                 sender.sendMessage("");

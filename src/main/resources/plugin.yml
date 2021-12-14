@@ -52,3 +52,6 @@ commands:
   group:
     description: Befehl um mit Gruppen zu interagieren.
     usage: "/<command> help"
+  reloadconfig:
+    description: Lädt die Konfigurationsdateien neu.
+    usage: "/<command>"

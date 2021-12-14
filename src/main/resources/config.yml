@@ -95,7 +95,7 @@ groups:
   noPermissionForGroup: "§cDu hast keine Erlaubnis diese Gruppe zu verändern!"
   requestSent: "§7Die Anfrage an §e%player% §7wurde gesendet!"
   groupPrompt: "§e%player% §7möchte dich zur Gruppe §9%groupTag% §7hinzufügen! Du kannst die Anfrage mit %command% §7annehmen."
-  prefix: "§7[§9%group%§7] §e%sender%§7:> "
+  prefix: "§7[§9%group%§7] §e%sender%§7:>§r "
   bullet: "§7- §9"
   help:
     message:
@@ -107,5 +107,5 @@ groups:
       - "§e/group member add <Nutzername> <Gruppenname>§7: Fügt einen Spieler zu einer Gruppe hinzu"
       - "§e/group member remove <Nutzername> <Gruppenname>§7: Entfernt einen Spieler aus einer Gruppe"
       - "§e/group listmembers <Gruppenname>§7: Listet alle Mitglieder einer Gruppe auf."
-
-
+reload:
+  message: "§cDie Config wurde erfolgreich neu geladen!"

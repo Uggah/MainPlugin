@@ -59,6 +59,7 @@ public final class MainPlugin extends JavaPlugin {
         this.getCommand("ping").setExecutor(new GeneralCommandExecution(this));
         this.getCommand("help").setExecutor(new GeneralCommandExecution(this));
         this.getCommand("clearchat").setExecutor(new GeneralCommandExecution(this));
+        this.getCommand("reloadconfig").setExecutor(new GeneralCommandExecution(this));
 
         // This will set the class MessageCommandExecution as the Executor for the following commands
 
@@ -238,6 +239,13 @@ public final class MainPlugin extends JavaPlugin {
         } catch (IOException e) {
             this.getLogger().log(Level.SEVERE, "Unable to save" + groupsFile.getName());
         }
+    }
+
+    public void reloadConfig(){
+        this.createUserSettingsConfig();
+        this.createInfoMenuConfig();
+        this.createGroupsConfig();
+        super.reloadConfig();
     }
 
     /**
