@@ -1,6 +1,11 @@
 package de.lifeminer.mc.mainplugin.commandexecution;
 
 import de.lifeminer.mc.mainplugin.MainPlugin;
+import net.md_5.bungee.api.ChatColor;
+import net.md_5.bungee.api.chat.ClickEvent;
+import net.md_5.bungee.api.chat.HoverEvent;
+import net.md_5.bungee.api.chat.TextComponent;
+import net.md_5.bungee.api.chat.hover.content.Text;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,6 +14,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +23,8 @@ public class GroupCommandExecution implements CommandExecutor {
     private final MainPlugin plugin;
     private final FileConfiguration standardConfig;
     private final FileConfiguration groupsConfig;
+
+    private static HashMap<String, String[]> pendingGroupRequests = new HashMap<>();
 
 
     public GroupCommandExecution(MainPlugin plugin) {
@@ -88,7 +96,7 @@ public class GroupCommandExecution implements CommandExecutor {
                         return true;
                     }
                 }
-                if(args[0].equalsIgnoreCase("list")){
+                if (args[0].equalsIgnoreCase("list")){
                     if(args[1].equalsIgnoreCase("all")){
                         if (sender.isOp()) {
                             Set<String> groups = groupsConfig.getKeys(false);
@@ -96,6 +104,23 @@ public class GroupCommandExecution implements CommandExecutor {
                             for (String s : groups) {
                                 sender.sendMessage(standardConfig.getString("groups.bullet") + s);
                             }
+                            return true;
+                        }
+                    }
+                }
+                if (args[0].equalsIgnoreCase("accept")){
+                    String groupTag = args[1];
+                    if(pendingGroupRequests.containsKey(sender.getName())){
+                        if(pendingGroupRequests.get(sender.getName())[1].equals(groupTag)){
+                            List<String> members = groupsConfig.getStringList(groupTag + ".members");
+                            members.add(sender.getName());
+                            groupsConfig.set(groupTag + ".members", members);
+                            plugin.saveGroupsConfig();
+                            sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyJoined").replace("%player%", sender.getName()).replace("%groupTag%", groupTag));
+                            if(Bukkit.getPlayer(pendingGroupRequests.get(sender.getName())[0]) != null){
+                                Bukkit.getPlayer(pendingGroupRequests.get(sender.getName())[0]).sendMessage(standardConfig.getString("groups.messageRequestAccepted").replace("%player%", ((Player) sender).getDisplayName()).replace("%groupTag%", groupTag));
+                            }
+                            pendingGroupRequests.remove(sender.getName());
                             return true;
                         }
                     }
@@ -110,11 +135,26 @@ public class GroupCommandExecution implements CommandExecutor {
                                 if (Bukkit.getPlayer(args[2]) != null) {
                                     Player newMember = Bukkit.getPlayer(args[2]);
                                     if(!groupsConfig.getStringList(groupTag + ".members").contains(newMember.getName())){
-                                        List<String> members = groupsConfig.getStringList(groupTag + ".members");
-                                        members.add(newMember.getName());
-                                        groupsConfig.set(groupTag + ".members", members);
-                                        plugin.saveGroupsConfig();
-                                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyAddedMember").replace("%player%", newMember.getName()).replace("%groupTag%", groupTag));
+                                        String[] tmp = {sender.getName(), groupTag};
+                                        pendingGroupRequests.put(newMember.getName(), tmp);
+
+                                        String prompt = standardConfig.getString("groups.groupPrompt").replace("%player%", ((Player) sender).getDisplayName()).replace("%groupTag%", groupTag);
+                                        TextComponent[] promptComponent = {new TextComponent(prompt.split("%command%")[0]), new TextComponent(prompt.split("%command%")[1])};
+                                        TextComponent acceptCommand = new TextComponent("/group accept " + groupTag);
+                                        acceptCommand.setColor(ChatColor.RED);
+                                        acceptCommand.setClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/group accept " + groupTag));
+                                        acceptCommand.setHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, new Text("Klick!")));
+                                        newMember.spigot().sendMessage(promptComponent[0], acceptCommand, promptComponent[1]);
+
+                                        sender.sendMessage(standardConfig.getString("groups.requestSent").replace("%player%", newMember.getDisplayName()));
+
+                                        plugin.getScheduler().runTaskLater(plugin, new Runnable() {
+                                            @Override
+                                            public void run() {
+                                                pendingGroupRequests.remove(newMember.getName());
+                                            }
+                                        }, 3600);
+
                                         return true;
                                     } else {
                                         sender.sendMessage(standardConfig.getString("groups.messagePlayerAlreadyInGroup"));
@@ -133,7 +173,7 @@ public class GroupCommandExecution implements CommandExecutor {
                                         newMemberList.remove(member);
                                         groupsConfig.set(groupTag + ".members", newMemberList);
                                         plugin.saveGroupsConfig();
-                                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replace("%player%", member));
+                                        sender.sendMessage(standardConfig.getString("groups.messageSuccessfullyRemovedMember").replace("%player%", member).replace("%groupTag%", groupTag));
                                         return true;
                                     } else {
                                         sender.sendMessage(standardConfig.getString("groups.messagePlayerNotFound"));
