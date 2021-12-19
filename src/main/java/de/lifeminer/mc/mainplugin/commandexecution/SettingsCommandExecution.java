@@ -47,13 +47,13 @@ public class SettingsCommandExecution implements CommandExecutor {
                 if (args.length == 2) {
                     if(args[0].equalsIgnoreCase("noteOnChatMention")){
                         if(args[1].equalsIgnoreCase("true")){
-                            userSettingsConfig.set(player.getName() + ".noteOnChat", true);
+                            userSettingsConfig.set(player.getUniqueId() + ".noteOnChat", true);
                             plugin.saveUserSettingsConfig();
                             player.sendMessage(standardConfig.getString("settings.messageSuccessful"));
                             return true;
                         } else
                         if(args[1].equalsIgnoreCase("false")){
-                            userSettingsConfig.set(player.getName() + ".noteOnChat", false);
+                            userSettingsConfig.set(player.getUniqueId() + ".noteOnChat", false);
                             plugin.saveUserSettingsConfig();
                             player.sendMessage(standardConfig.getString("settings.messageSuccessful"));
                             return true;
@@ -132,7 +132,7 @@ public class SettingsCommandExecution implements CommandExecutor {
         if(cmd.getName().equalsIgnoreCase("resetnickname")){
             if(args.length == 1){
                 Player player = Bukkit.getPlayer(args[0]);
-                standardConfig.set(player.getName() + ".nickname", player.getName());
+                standardConfig.set(player.getUniqueId() + ".nickname", player.getUniqueId());
                 if(player.isOnline()){
                     player.setDisplayName(player.getName());
                 }

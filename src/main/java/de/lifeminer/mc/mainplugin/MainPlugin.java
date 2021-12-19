@@ -199,12 +199,12 @@ public final class MainPlugin extends JavaPlugin {
      */
 
     public void createUserSettings(Player player){
-        if(!userSettingsConfig.contains(player.getName() + ".noteOnChat")) {
-            userSettingsConfig.set(player.getName() + ".noteOnChat", true);
+        if(!userSettingsConfig.contains(player.getUniqueId() + ".noteOnChat")) {
+            userSettingsConfig.set(player.getUniqueId() + ".noteOnChat", true);
             saveUserSettingsConfig();
         }
-        if(!userSettingsConfig.contains(player.getName() + ".configCreated")){
-            userSettingsConfig.set(player.getName() + ".configCreated", true);
+        if(!userSettingsConfig.contains(player.getUniqueId() + ".configCreated")){
+            userSettingsConfig.set(player.getUniqueId() + ".configCreated", true);
             saveUserSettingsConfig();
         }
     }

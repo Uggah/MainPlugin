@@ -35,7 +35,7 @@ public class SettingsMenuHandler {
         Inventory gui = Bukkit.createInventory(player, 9, standardConfig.getString("settings.guiTitle"));
         ItemStack noteOnChat;
         {
-            if(userSettingsConfig.getBoolean(player.getName() + ".noteOnChat")){
+            if(userSettingsConfig.getBoolean(player.getUniqueId() + ".noteOnChat")){
                 String loreString = standardConfig.getString("settings.noteOnChatTitleActiveLore");
                 String[] splittedLore = loreString.split("&break;");
                 String displayName = "§f" + standardConfig.getString("settings.noteOnChatTitleActive");

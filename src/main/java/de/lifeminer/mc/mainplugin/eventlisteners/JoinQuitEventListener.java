@@ -27,8 +27,8 @@ public class JoinQuitEventListener implements Listener {
 
         plugin.createUserSettings(player);
 
-        if(userSettingsConfig.contains(player.getName() + ".nickname")){
-            player.setDisplayName(userSettingsConfig.getString(player.getName() + ".nickname"));
+        if(userSettingsConfig.contains(player.getUniqueId() + ".nickname")){
+            player.setDisplayName(userSettingsConfig.getString(player.getUniqueId() + ".nickname"));
         }
 
         String text = standardConfig.getString("joinEvent.message").replace("%player%", player.getDisplayName());

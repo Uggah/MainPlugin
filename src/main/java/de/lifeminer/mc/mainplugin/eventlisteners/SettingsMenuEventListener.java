@@ -30,14 +30,14 @@ public class SettingsMenuEventListener implements Listener {
         if (e.getView().getTitle().equals(standardConfig.getString("settings.guiTitle"))){
             e.setCancelled(true);
             if(e.getSlot() == 0){
-                if(userSettingsConfig.getBoolean(player.getName() + ".noteOnChat")){
-                    userSettingsConfig.set(player.getName() + ".noteOnChat", false);
+                if(userSettingsConfig.getBoolean(player.getUniqueId() + ".noteOnChat")){
+                    userSettingsConfig.set(player.getUniqueId() + ".noteOnChat", false);
                     plugin.saveUserSettingsConfig();
                     settingsMenuHandler.updateSettings(inv, player);
 
                     player.sendMessage(standardConfig.getString("settings.messageSuccessful"));
                 } else {
-                    userSettingsConfig.set(player.getName() + ".noteOnChat", true);
+                    userSettingsConfig.set(player.getUniqueId() + ".noteOnChat", true);
                     plugin.saveUserSettingsConfig();
                     settingsMenuHandler.updateSettings(inv, player);
 

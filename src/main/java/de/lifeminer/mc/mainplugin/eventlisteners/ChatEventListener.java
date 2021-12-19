@@ -102,7 +102,7 @@ public class ChatEventListener implements Listener {
         for (String word : words) {
             Player temp = Bukkit.getPlayer(word);
             if (temp != null && temp != player && targetedPlayers.contains(temp)) {
-                if (userSettingsConfig.getBoolean(temp.getName() + ".noteOnChat")){
+                if (userSettingsConfig.getBoolean(temp.getUniqueId() + ".noteOnChat")){
                     Location loc = temp.getLocation();
                     temp.playNote(loc, Instrument.XYLOPHONE, new Note(4));
                     break;
@@ -110,7 +110,7 @@ public class ChatEventListener implements Listener {
             }
 
             for(Player j : targetedPlayers){
-                if(j.getDisplayName().equalsIgnoreCase(word) && userSettingsConfig.getBoolean(j.getName() + ".noteOnChat")){
+                if(j.getDisplayName().equalsIgnoreCase(word) && userSettingsConfig.getBoolean(j.getUniqueId() + ".noteOnChat")){
                     j.playNote(j.getLocation(), Instrument.XYLOPHONE, new Note(4));
                     break;
                 }

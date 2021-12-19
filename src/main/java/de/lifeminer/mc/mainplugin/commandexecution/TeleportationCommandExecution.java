@@ -135,15 +135,17 @@ public class TeleportationCommandExecution implements CommandExecutor {
 
         if(cmd.getName().equalsIgnoreCase("home")){
             if (sender instanceof Player){
+                Player player = ((Player) sender);
                 if (args.length == 0){
-                    if (userSettingsConfig.isSet(sender.getName() + ".homeLocation.world") && userSettingsConfig.isSet(sender.getName() + ".homeLocation.x") && userSettingsConfig.isSet(sender.getName() + ".homeLocation.y") && userSettingsConfig.isSet(sender.getName() + ".homeLocation.z") ){
+                    if (userSettingsConfig.isSet(player.getUniqueId() + ".homeLocation.world")
+                            && userSettingsConfig.isSet(player.getUniqueId() + ".homeLocation.x")
+                            && userSettingsConfig.isSet(player.getUniqueId() + ".homeLocation.y")
+                            && userSettingsConfig.isSet(player.getUniqueId() + ".homeLocation.z") ){
 
-                        Player player = ((Player) sender);
-
-                        World world = Bukkit.getServer().getWorld(userSettingsConfig.getString(sender.getName() + ".homeLocation.world"));
-                        int x = userSettingsConfig.getInt(sender.getName() + ".homeLocation.x");
-                        int y = userSettingsConfig.getInt(sender.getName() + ".homeLocation.y");
-                        int z = userSettingsConfig.getInt(sender.getName() + ".homeLocation.z");
+                        World world = Bukkit.getServer().getWorld(userSettingsConfig.getString(player.getUniqueId() + ".homeLocation.world"));
+                        int x = userSettingsConfig.getInt(player.getUniqueId() + ".homeLocation.x");
+                        int y = userSettingsConfig.getInt(player.getUniqueId() + ".homeLocation.y");
+                        int z = userSettingsConfig.getInt(player.getUniqueId() + ".homeLocation.z");
 
                         Location home = new Location(world, x, y, z);
 
@@ -167,10 +169,10 @@ public class TeleportationCommandExecution implements CommandExecutor {
                 if (args.length == 0){
                     Location loc = player.getLocation();
 
-                    userSettingsConfig.set(player.getName() + ".homeLocation.world", loc.getWorld().getName());
-                    userSettingsConfig.set(player.getName() + ".homeLocation.x", loc.getX());
-                    userSettingsConfig.set(player.getName() + ".homeLocation.y", loc.getY());
-                    userSettingsConfig.set(player.getName() + ".homeLocation.z", loc.getZ());
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.world", loc.getWorld().getName());
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.x", loc.getX());
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.y", loc.getY());
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.z", loc.getZ());
 
                     plugin.saveUserSettingsConfig();
 
@@ -193,10 +195,10 @@ public class TeleportationCommandExecution implements CommandExecutor {
                         return false;
                     }
 
-                    userSettingsConfig.set(player.getName() + ".homeLocation.world", loc.getWorld().getName());
-                    userSettingsConfig.set(player.getName() + ".homeLocation.x", x);
-                    userSettingsConfig.set(player.getName() + ".homeLocation.y", y);
-                    userSettingsConfig.set(player.getName() + ".homeLocation.z", z);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.world", loc.getWorld().getName());
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.x", x);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.y", y);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.z", z);
 
                     plugin.saveUserSettingsConfig();
 
@@ -225,10 +227,10 @@ public class TeleportationCommandExecution implements CommandExecutor {
                         return false;
                     }
 
-                    userSettingsConfig.set(player.getName() + ".homeLocation.world", world);
-                    userSettingsConfig.set(player.getName() + ".homeLocation.x", x);
-                    userSettingsConfig.set(player.getName() + ".homeLocation.y", y);
-                    userSettingsConfig.set(player.getName() + ".homeLocation.z", z);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.world", world);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.x", x);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.y", y);
+                    userSettingsConfig.set(player.getUniqueId() + ".homeLocation.z", z);
 
                     plugin.saveUserSettingsConfig();
 
